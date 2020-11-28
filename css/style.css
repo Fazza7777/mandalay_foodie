@@ -180,4 +180,8 @@
     .login-text{
         font-size:23px;
     }
+    /* Insert restaurant */
+    .insert_head{
+        font-size: 21px !important;
+    }
 }

@@ -8,6 +8,9 @@ if(!isset($_SESSION["user_id"])){
 if($_SERVER["REQUEST_METHOD"] == "POST"){
    $user = new User();
    $user = $user->register($_POST);  
+   if($user == "register"){
+    Helper::redirect("registration.php");
+   }
 }
 ?>     
 <!-- content area start -->
@@ -102,7 +105,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
           <!-- RegisterTable Column  start -->
         <div class=" col-12 col-lg-10 offset-lg-1">
           <div class="card mt-4 border-0">
-              <table class="table register-table table-hover table-striped-md table-responsive-sm ">
+              <table class="table register-table table-hover table-striped-md table-responsive-sm " >
                   <thead class="thead-warning">
                     <tr>
                       <th scope="col">No</th>
@@ -160,8 +163,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </div>
          </form>
       </div>
-      <div class="modal-footer d-flex justify-content-between">
-        <b id="permission" class="float-left"></b>
+      <div class="modal-footer d-flex justify-content-end">
+  
         <p>
            <button type="button" class="btn btn-outline-secondary mr-2" data-dismiss="modal">cancel</button>
             <button type="submit" form="my-form" class="btn btn-success">Update</button>

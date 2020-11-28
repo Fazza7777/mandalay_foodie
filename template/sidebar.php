@@ -28,7 +28,7 @@
             </li>
             <li class="menu-item">     
               
-                <a href="" class="menu-item-link"><i class="feather-bar-chart-2 mr-2"></i>Chart View</a>
+                <a href="" class="menu-item-link"><i class="feather-bar-chart-2 mr-3"></i>Chart View</a>
                  <span ><i class="feather-chevron-right text-white font-weight-bold"></i></span>
             </li>
             <li class="menu-spacer"></li>
@@ -37,8 +37,8 @@
             </li>
             <li class="menu-item">
 
-                <a href="" class="menu-item-link">
-                  <i class="feather-shopping-bag mr-2"></i> Insert restaurant
+                <a href="<?php echo $url; ?>insert_restaurant.php" class="menu-item-link">
+                  <i class="feather-shopping-bag mr-3"></i> Insert restaurant
                 </a>
             
                 <span ><i class="feather-chevron-right"></i></span>
@@ -46,7 +46,7 @@
             <li class="menu-item">
                
                 <a href="<?php echo $url; ?>manage_restaurant.php" class="menu-item-link">
-                <i class="feather-check-circle mr-2"></i>
+                <i class="feather-check-circle mr-3"></i>
                 Manage restaurant
                 </a>
                <span ><i class="feather-chevron-right text-white font-weight-bold"></i></span>
@@ -57,8 +57,13 @@
             </li>
             <li class="menu-item">
                 
-                <a href="<?php echo $url; ?>registration.php" class="menu-item-link"><i class="feather-users mr-2"></i> User Registration</a>
+                <a href="<?php echo $url; ?>registration.php" class="menu-item-link"><i class="feather-users mr-3"></i> User Registration</a>
 
+                <span ><i class="feather-chevron-right text-white font-weight-bold"></i></span>
+            </li>
+            <li class="menu-item">
+                
+                <a href="<?php echo $url ?>logout.php?id=<?php echo User::auth()->id?>" class="menu-item-link"><i class="feather-log-out mr-3"></i> Logout</a>
                 <span ><i class="feather-chevron-right text-white font-weight-bold"></i></span>
             </li>
             <li class="menu-spacer"></li>

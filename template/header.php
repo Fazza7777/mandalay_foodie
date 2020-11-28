@@ -44,7 +44,7 @@ require_once "core/autoload.php";
                        ?>
                         </div>
                         <div class="dropdown-menu dropdown-menu-right bg-warning dropdown-area">
-                            <a href="logout.php?id=<?php echo User::auth()->id?>" class="dropdown-item text-white" type="button">Logout</a>
+                            <a href="<?php echo $url ?>logout.php?id=<?php echo User::auth()->id?>" class="dropdown-item text-white" type="button">Logout</a>
                             <div class="dropdown-divider bg-white"></div>
                             <a class="dropdown-item text-white" type="button">Change Password</a>
                         </div>

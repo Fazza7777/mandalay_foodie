@@ -55,8 +55,8 @@ class User{
                 "password"=>password_hash($request["password"],PASSWORD_DEFAULT)
             ]);
             if($user){
-             $_SESSION["user_id"] = 1;
-              Helper::redirect("registration.php");
+             $_SESSION["user_id"] = $user->id;
+              return "register";
             }
         }
     }

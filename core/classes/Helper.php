@@ -3,12 +3,6 @@ class Helper{
     public static function redirect($path){
         header("location:$path");
     }
-    public static function old($request){
-           if(isset($_SESSION[$request])){
-               echo $_SESSION[$request];
-            
-           }
-    }
 
    public static function filter($text){
        $text = trim($text);
@@ -18,9 +12,15 @@ class Helper{
      
        return $text;
    }
-   public static function checkValidateError($arr,$checkvalue){  
-           if (isset($checkvalue)) {
-              echo $arr[$checkvalue];
-           }    
+   public static function old($inputName){
+       if(isset($_POST[$inputName])){
+           echo $_POST[$inputName];
+       }else{
+           echo "";
+       }
+   }
+
+   public static function clearError(){
+       $_SESSION["error"] = [];
    }
 }

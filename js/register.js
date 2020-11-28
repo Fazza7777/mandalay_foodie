@@ -29,14 +29,9 @@
           location.href ="login.php"
         }
         if(currentUserId !== id){
-          var p =  document.getElementById("permission")
-          p.classList.add("text-danger")
-          p.innerHTML = `${currentUserName} - It is not your account!`
-          toastr.success("No Permission")
-          setTimeout(go,1000)
-            function go(){
-              location.href ="registration.php"
-            }
+          $("#editModal").modal("hide")
+           toastr.info(`Hello :: ${currentUserName} - It is not your account!`)
+          
         }else{
             if(name == "" || email == ""){
               if(name == ""){
@@ -59,12 +54,12 @@
                 $("#editModal").modal("hide")
                 console.log(response.data)
                 if(response.data != "already_exist"){
-                      toastr.success(` ${name} : Update success!`)
+                       toastr.success(` ${name} : Update success!`)
                         document.getElementById("action").innerHTML = response.data
-                        // setTimeout(go,1000)
-                        // function go(){
-                        //   location.href ="registration.php"
-                        // }
+                        setTimeout(go,500)
+                        function go(){
+                          location.href ="registration.php"
+                        }
                 }
                 if(response.data == "already_exist"){
                   toastr.warning("အီးမေးလ်သည် အသုံးပြုပီးဖြစ်ပါသည်")
