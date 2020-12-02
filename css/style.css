@@ -136,8 +136,8 @@
     font-weight: bolder;
 }
 .manage_img{
-    width:80px;
-    height:80px;
+    width:70px;
+    height:55px;
    border:1px solid var(--bg-primary-dark);
 }
 .edit-shop-text{

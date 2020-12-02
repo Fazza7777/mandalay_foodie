@@ -135,7 +135,7 @@ if(isset($_GET["search"]) ){
                         <div class="px-3 py-2 shadow-sm border-0 rounded card">
                             <div class="card-body shop-header">
                                 <span>
-                                    <img src="img/logo.jpg" alt="" class="manage_img">
+                                    <img src="upload/<?php echo $r->restaurant_image ?>" alt="" class="manage_img">
                                 </span>
                                 <span class="edit-shop-text"><?php echo $r->name_myanmar ?></span>
                                 <hr>
@@ -148,23 +148,17 @@ if(isset($_GET["search"]) ){
                                 <i class="feather-map-pin mr-2"></i> <span class="font-weight-bold"><?php echo $r->address_myanmar ?></span>
                             </p>
                             <hr class="m-2">
-                            <?php
-                                $now = date("H a") ;
-                
-                           $from = date("H", strtotime($r->from_hour));
-                           $to = date("H", strtotime($r->to_hour));
-                              
-                           if ($from<=$now && $to>=$now) { ?>
-                                     <p class="font-weight-bold mt-3"><i class="feather-clock mr-2"></i>Now : <span class="alert py-2 ml-2 alert-success">Open</span></p>
-                            <?php    } else { ?>
-                                  
+                            <?php       
+                              if (Helper::shopTime($r->from_hour,$r->to_hour) == "open") { 
+                            ?>
+                                 <p class="font-weight-bold mt-3"><i class="feather-clock mr-2"></i>Now : <span class="alert py-2 ml-2 alert-success">Open</span></p>
+                            <?php } else { ?> 
                                 <p class="font-weight-bold mt-3"><i class="feather-clock mr-2"></i>Now : <span class="alert py-2 ml-2 alert-danger">Close</span></p>
                             <?php } ?>
                           <hr>
                             <p class="py-2">
-                                <button class="btn btn-warning btn-sm mr-2"><i class="feather-edit"></i> Edit</button>
+                                <a href="restaurant_edit.php?id=<?php echo $r->id ?>" class="btn btn-warning btn-sm mr-2"><i class="feather-edit"></i> Edit</a>
                                 <button id="res_delete" name="<?php echo $r->name_myanmar ?>" res_id="<?php echo $r->id ?>" class="btn btn-warning btn-sm mr-2"><i class="feather-trash-2"> </i>Delete</button>
-
                             </p>
                         </div>
                     </div>

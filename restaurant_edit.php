@@ -5,6 +5,10 @@ require_once "template/header.php";
   if(!isset($_SESSION["user_id"])){
       Helper::redirect("login.php");
   }
+  if(isset($_GET["id"])){
+    $data = DB::table("restaurants")->where("id",$_GET['id'])->first();
+    // echo $data->name_myanmar;
+  }
   if($_SERVER["REQUEST_METHOD"] == "POST"){
     $res = new Restaurant();
     $res = $res->create($_POST);
@@ -15,6 +19,7 @@ require_once "template/header.php";
     //print_r($_POST);
 
   }
+
 ?>
 
 <!--      Insert Form  start*/ -->
@@ -34,7 +39,7 @@ require_once "template/header.php";
                            <div class="col-12 mb-2 col-lg-6">
                                <div class="form-group">
                                    <label for="m-name">Restaurant Name (Myanmar)</label>
-                                   <input type="text" class="form-control <?php echo isset($res["m-shop"]) ? 'border-danger' : ''?>" id="m-name" value="<?php echo Helper::old("myanmar_name") ?>"
+                                   <input type="text" class="form-control <?php echo isset($res["m-shop"]) ? 'border-danger' : ''?>" id="m-name" value="<?php echo  $data->name_myanmar ?>"
                                     name="myanmar_name">
                                     <?php if(isset($res["m-shop"])){ ?>
                                        <small class="text-danger"><?php echo $res["m-shop"] ?></small>
@@ -45,7 +50,7 @@ require_once "template/header.php";
                               <div class="form-group">
                                    <label for="m-name">Restaurant Name (English)</label>
                                    <input type="text" class="form-control <?php echo isset($res["m-shop"]) ? 'border-danger' : ''?>" id="m-name" 
-                                   value="<?php echo Helper::old("english_name") ?>" name="english_name">
+                                   value="<?php echo  $data->name_english ?>" name="english_name">
                                    <?php if(isset($res["e-shop"])){ ?>
                                        <small class="text-danger"><?php echo $res["e-shop"] ?></small>
                                     <?php } ?>
@@ -65,29 +70,29 @@ require_once "template/header.php";
                            <div class="col-12 mb-2 col-lg-6">
                               <div class="form-group">
                                 <label for="c-type">Cuisine type</label>
-                                <select name="cuisine_type" class="custom-select <?php echo isset($res["cuisine_type"]) ? 'border-danger' : ''?>" id="c-type">
-                                    <option disabled selected>choose cuisine</option>
-                                    <option value="bbq">BBQ & Hotpot</option>
-                                    <option value="fast-foods">Fast Foods (Burger & Fres)</option>
-                                    <option value="chinese">Chinese</option>
-                                    <option value="french">French</option>
-                                    <option value="dim-sum">Dim Sum</option>
-                                    <option value="indian">Indian</option>
-                                    <option value="indonesian">Indonesian</option>
-                                    <option value="international">International</option>
-                                    <option value="italian">Italian</option>
-                                    <option value="japanese">Japanese</option>
-                                    <option value="korean">Korean</option>
-                                    <option value="local">Local Delights</option>
-                                    <option value="malaysian">Malaysian</option>
-                                    <option value="mexican">Mexican</option>
-                                    <option value="pizza">Pizza</option>
-                                    <option value="seafood">Seafood</option>
-                                    <option value="spanish">Spanish</option>
-                                    <option value="steak">Steak & Grill</option>
-                                    <option value="taiwanese">Taiwanese</option>
-                                    <option value="thai">Thai</option>
-                                    <option value="vietnamese">Vietnamese</option>
+                                <select name="cuisine_type" class="custom-select <?php echo isset($res["cuisine_type"]) ? 'border-danger' : ''?>" >
+                          
+                                    <option value="bbq" <?php echo Helper::selectValue($data->cuisine_type,"bbq") ?>>BBQ & Hotpot</option>
+                                    <option value="fast-foods" <?php echo Helper::selectValue($data->cuisine_type,"fast-foods") ?>>Fast Foods (Burger & Fres)</option>
+                                    <option value="chinese" <?php echo Helper::selectValue($data->cuisine_type,"chinese") ?>>Chinese</option>
+                                    <option value="french" <?php echo Helper::selectValue($data->cuisine_type,"french") ?>>French</option>
+                                    <option value="dim-sum" <?php echo Helper::selectValue($data->cuisine_type,"dim-sum") ?>>Dim Sum</option>
+                                    <option value="indian" <?php echo Helper::selectValue($data->cuisine_type,"indian") ?>>Indian</option>
+                                    <option value="indonesian" <?php echo Helper::selectValue($data->cuisine_type,"indonesian") ?>>Indonesian</option>
+                                    <option value="international" <?php echo Helper::selectValue($data->cuisine_type,"international") ?>>International</option>
+                                    <option value="italian" <?php echo Helper::selectValue($data->cuisine_type,"italian") ?>>Italian</option>
+                                    <option value="japanese" <?php echo Helper::selectValue($data->cuisine_type,"japanese") ?>>Japanese</option>
+                                    <option value="korean" <?php echo Helper::selectValue($data->cuisine_type,"korean") ?>>Korean</option>
+                                    <option value="local" <?php echo Helper::selectValue($data->cuisine_type,"local") ?>>Local Delights</option>
+                                    <option value="malaysian" <?php echo Helper::selectValue($data->cuisine_type,"malaysian") ?>>Malaysian</option>
+                                    <option value="mexican" <?php echo Helper::selectValue($data->cuisine_type,"mexican") ?>>Mexican</option>
+                                    <option value="pizza" <?php echo Helper::selectValue($data->cuisine_type,"pizza") ?>>Pizza</option>
+                                    <option value="seafood" <?php echo Helper::selectValue($data->cuisine_type,"seafood") ?>>Seafood</option>
+                                    <option value="spanish" <?php echo Helper::selectValue($data->cuisine_type,"spanish") ?>>Spanish</option>
+                                    <option value="steak" <?php echo Helper::selectValue($data->cuisine_type,"steak") ?>>Steak & Grill</option>
+                                    <option value="taiwanese" <?php echo Helper::selectValue($data->cuisine_type,"taiwanese") ?>>Taiwanese</option>
+                                    <option value="thai" <?php echo Helper::selectValue($data->cuisine_type,"thai") ?>>Thai</option>
+                                    <option value="vietnamese" <?php echo Helper::selectValue($data->cuisine_type,"vietnamese") ?>>Vietnamese</option>
                                 </select>
                                 <?php if(isset($res["c_type"])){ ?>
                                        <small class="text-danger"><?php echo $res["c_type"] ?></small>
@@ -100,19 +105,19 @@ require_once "template/header.php";
                                 <label for="">Meal Type</label>
                                 <div class="form-group">
                                     <div class="custom-control custom-radio mr-lg-5 mx-0 custom-control-inline">
-                                        <input type="radio" id="radio1" name="meal_type" value="brunch" class="custom-control-input">
+                                        <input type="radio" id="radio1" <?php echo Helper::checkValue($data->meal_type,"brunch") ?> name="meal_type" value="brunch" class="custom-control-input">
                                         <label class="custom-control-label" for="radio1">Brunch</label>
                                     </div>
                                     <div class="custom-control custom-radio mx-lg-5 mx-0 custom-control-inline">
-                                       <input type="radio" id="radio2" name="meal_type" value="dinner" class="custom-control-input">
+                                       <input type="radio" id="radio2" <?php echo Helper::checkValue($data->meal_type,"dinner") ?> name="meal_type" value="dinner" class="custom-control-input">
                                        <label class="custom-control-label" for="radio2">Dinner</label>
                                     </div>
                                     <div class="custom-control custom-radio mx-lg-5 mx-0 custom-control-inline">
-                                       <input type="radio" id="radio3" name="meal_type" value="drinks" class="custom-control-input">
+                                       <input type="radio" id="radio3" name="meal_type" <?php echo Helper::checkValue($data->meal_type,"drinks") ?> value="drinks" class="custom-control-input">
                                        <label class="custom-control-label" for="radio3">Drinks & Desserts</label>
                                     </div>
                                     <div class="custom-control custom-radio mx-lg-5 mx-0 custom-control-inline">
-                                       <input type="radio" id="radio4" name="meal_type" value="allday" class="custom-control-input">
+                                       <input type="radio" id="radio4" name="meal_type" <?php echo Helper::checkValue($data->meal_type,"allday") ?> value="allday" class="custom-control-input">
                                        <label class="custom-control-label" for="radio4">All Day</label>
                                     </div>
                                 </div>
@@ -126,23 +131,23 @@ require_once "template/header.php";
                                 <label for="">Eatery Type</label>
                                 <div class="form-group">
                                     <div class="custom-control custom-radio mr-lg-5 mx-0 custom-control-inline">
-                                        <input type="radio" id="e-radio1" name="eatery_type" value="barpub" class="custom-control-input">
+                                        <input type="radio" id="e-radio1" <?php echo Helper::checkValue($data->eatery_type,"barpub") ?> name="eatery_type" value="barpub" class="custom-control-input">
                                         <label class="custom-control-label" for="e-radio1">Bar & Pub</label>
                                     </div>
                                     <div class="custom-control custom-radio mx-lg-5 mx-0 custom-control-inline">
-                                       <input type="radio" id="e-radio2" name="eatery_type" value="cofe" class="custom-control-input">
+                                       <input type="radio" id="e-radio2" <?php echo Helper::checkValue($data->eatery_type,"cofe") ?> name="eatery_type" value="cofe" class="custom-control-input">
                                        <label class="custom-control-label" for="e-radio2">Cofe</label>
                                     </div>
                                     <div class="custom-control custom-radio mx-lg-5 mx-0 custom-control-inline">
-                                       <input type="radio" id="e-radio3" name="eatery_type" value="cousaldining" class="custom-control-input">
+                                       <input type="radio" id="e-radio3" <?php echo Helper::checkValue($data->eatery_type,"cousaldining") ?> name="eatery_type" value="cousaldining" class="custom-control-input">
                                        <label class="custom-control-label" for="e-radio3">Cousal Dining</label>
                                     </div>
                                     <div class="custom-control custom-radio mx-lg-5 mx-0 custom-control-inline">
-                                       <input type="radio" id="e-radio4" name="eatery_type" value="food-court" class="custom-control-input">
+                                       <input type="radio" id="e-radio4" <?php echo Helper::checkValue($data->eatery_type,"food-court") ?> name="eatery_type" value="food-court" class="custom-control-input">
                                        <label class="custom-control-label" for="e-radio4">Food Court</label>
                                     </div>
                                     <div class="custom-control custom-radio mx-lg-5 mx-0 custom-control-inline">
-                                       <input type="radio" id="e-radio5" name="eatery_type" value="restaurant" class="custom-control-input">
+                                       <input type="radio" id="e-radio5" <?php echo Helper::checkValue($data->eatery_type,"restaurant") ?> name="eatery_type" value="restaurant" class="custom-control-input">
                                        <label class="custom-control-label" for="e-radio5">Restaurant</label>
                                     </div>
                                 </div>
@@ -156,39 +161,39 @@ require_once "template/header.php";
                                <label for="features">Features</label>
                                 <div class="form-group">
                                     <div class="custom-checkbox custom-control custom-control-inline">
-                                      <input class="custom-control-input" type="checkbox" name="Halal" value="1" id="c1" name="halal">
+                                      <input class="custom-control-input"  <?php echo Helper::checkValue($data->halal,"1") ?> type="checkbox" name="Halal" value="1" id="c1" name="halal">
                                       <label class="custom-control-label" for="c1">Halal</label>
                                     </div>
                                     <div class="custom-checkbox custom-control custom-control-inline">
-                                      <input class="custom-control-input" type="checkbox" name="Vegetrian" value="1" id="c2" name="vegetrian">
+                                      <input class="custom-control-input"  <?php echo Helper::checkValue($data->vegetrian,"1") ?> type="checkbox" name="Vegetrian" value="1" id="c2" name="vegetrian">
                                       <label class="custom-control-label" for="c2">Vegetrian</label>
                                     </div>
                                     <div class="custom-checkbox custom-control custom-control-inline">
-                                      <input class="custom-control-input" type="checkbox" name="air" value="1" id="c3" name="Air-conditioned">
+                                      <input class="custom-control-input"  <?php echo Helper::checkValue($data->air_conditioned,"1") ?> type="checkbox" name="air" value="1" id="c3" name="Air-conditioned">
                                       <label class="custom-control-label" for="c3">Air-conditioned</label>
                                     </div>
                                     <div class="custom-checkbox custom-control custom-control-inline">
-                                      <input class="custom-control-input" type="checkbox" name="wifi" value="1" id="c4" >
+                                      <input class="custom-control-input"  <?php echo Helper::checkValue($data->wifi,"1") ?> type="checkbox" name="wifi" value="1" id="c4" >
                                       <label class="custom-control-label" for="c4">Wi-Fi</label>
                                     </div>
                                     <div class="custom-checkbox custom-control custom-control-inline">
-                                      <input class="custom-control-input" type="checkbox" name="parking" value="1" id="c5" >
+                                      <input class="custom-control-input"  <?php echo Helper::checkValue($data->parking,"1") ?> type="checkbox" name="parking" value="1" id="c5" >
                                       <label class="custom-control-label" for="c5">Parking</label>
                                     </div>
                                     <div class="custom-checkbox custom-control custom-control-inline">
-                                      <input class="custom-control-input" type="checkbox" name="credit_card" value="1" id="c6" >
+                                      <input class="custom-control-input"  <?php echo Helper::checkValue($data->credit_card,"1") ?> type="checkbox" name="credit_card" value="1" id="c6" >
                                       <label class="custom-control-label" for="c6">Accept Credit Card</label>
                                     </div>
                                     <div class="custom-checkbox custom-control custom-control-inline">
-                                      <input class="custom-control-input" type="checkbox" name="foreign" value="1" id="c7" >
+                                      <input class="custom-control-input"  <?php echo Helper::checkValue($data->foreign_currency,"1") ?> type="checkbox" name="foreign" value="1" id="c7" >
                                       <label class="custom-control-label" for="c7">Accept Foreign Currency</label>
                                     </div>
                                     <div class="custom-checkbox custom-control custom-control-inline">
-                                      <input class="custom-control-input" type="checkbox" name="delivery" value="1" id="c8" >
+                                      <input class="custom-control-input"  <?php echo Helper::checkValue($data->delivery,"1") ?> type="checkbox" name="delivery" value="1" id="c8" >
                                       <label class="custom-control-label" for="c8">Delivery</label>
                                     </div>
                                     <div class="custom-checkbox custom-control custom-control-inline">
-                                      <input class="custom-control-input" type="checkbox" name="buffet" value="1"  id="c9" >
+                                      <input class="custom-control-input"  <?php echo Helper::checkValue($data->buffet,"1") ?> type="checkbox" name="buffet" value="1"  id="c9" >
                                       <label class="custom-control-label" for="c9">Buffet</label>
                                     </div>
                                 </div>
@@ -199,7 +204,7 @@ require_once "template/header.php";
                              <div class="col-12 col-lg-6">
                                  <div class="form-group">
                                    <label for="m-address">Address (Myanmar)</label>
-                                   <textarea name="m_address"  id="m-address" cols="20" rows="5" class="form-control <?php echo isset($res["m_add"]) ? 'border-danger' : ''?>"><?php echo Helper::old("m_address") ?></textarea>
+                                   <textarea name="m_address"   id="m-address" cols="20" rows="5" class="form-control <?php echo isset($res["m_add"]) ? 'border-danger' : ''?>"><?php echo  $data->address_myanmar ?></textarea>
                                      <?php if(isset($res["m_add"])){ ?>
                                        <small class="text-danger"><?php echo $res["m_add"] ?></small>
                                       <?php } ?>
@@ -209,7 +214,7 @@ require_once "template/header.php";
                              <div class="col-12 col-lg-6">
                                  <div class="form-group">
                                    <label for="e-address">Address (English)</label>
-                                   <textarea name="e_address" id="" cols="20" rows="5" class="form-control <?php echo isset($res["e_add"]) ? 'border-danger' : ''?>"><?php echo Helper::old("e_address") ?></textarea>
+                                   <textarea name="e_address" id="" cols="20" rows="5" class="form-control <?php echo isset($res["e_add"]) ? 'border-danger' : ''?>"><?php echo  $data->address_english ?></textarea>
                                      <?php if(isset($res["e_add"])){ ?>
                                        <small class="text-danger"><?php echo $res["e_add"] ?></small>
                                       <?php } ?>
@@ -231,14 +236,14 @@ require_once "template/header.php";
                                 
                                       <div class="col-12 col-md-6 mb-2">
                                           <label for="">Phone Number 1</label>
-                                          <input type="number" name="phone_one" class="form-control <?php echo isset($res["phone"]) ? 'border-danger' : ''?>" >
+                                          <input type="number" name="phone_one"  value="<?php echo  $data->phone_one ?>" class="form-control <?php echo isset($res["phone"]) ? 'border-danger' : ''?>" >
                                           <?php if(isset($res["phone"])){ ?>
                                              <small class="text-danger"><?php echo $res["phone"] ?></small>
                                           <?php } ?>
                                       </div>
                                       <div class="col-12 col-md-6 mb-2">
                                           <label for="">Phone Number 2</label>
-                                          <input type="number" name="phone_two" class="form-control" >
+                                          <input type="number" name="phone_two" value="<?php echo  $data->phone_two ?>" class="form-control" >
                                       </div>
                                 
                                 </div>
@@ -251,7 +256,7 @@ require_once "template/header.php";
                                   <div class="col-12 col-md-6 mb-2">
          
                                     <label for="">Opening Hour From</label>
-                                    <input type="time" name="from" class="form-control <?php echo isset($res["fromH"]) ? 'border-danger' : ''?>" >
+                                    <input type="time" value="<?php echo  $data->from_hour ?>" name="from" class="form-control <?php echo isset($res["fromH"]) ? 'border-danger' : ''?>" >
                                     <?php if(isset($res["fromH"])){ ?>
                                        <small class="text-danger"><?php echo $res["fromH"] ?></small>
                                     <?php } ?>
@@ -261,7 +266,7 @@ require_once "template/header.php";
            
                                     <label for="">Opening Hour To</label>
         
-                                    <input type="time" name="to" class="form-control <?php echo isset($res["toH"]) ? 'border-danger' : ''?>">
+                                    <input type="time" name="to" value="<?php echo  $data->to_hour ?>" class="form-control <?php echo isset($res["toH"]) ? 'border-danger' : ''?>">
                                     <?php if(isset($res["toH"])){ ?>
                                        <small class="text-danger"><?php echo $res["toH"] ?></small>
                                     <?php } ?>
@@ -276,31 +281,31 @@ require_once "template/header.php";
                                 <label for="features">Close Day</label>
                                 <div class="form-group">
                                     <div class="custom-checkbox custom-control custom-control-inline">
-                                      <input class="custom-control-input" type="checkbox" name="monday" id="monday" value="1">
+                                      <input class="custom-control-input" <?php echo Helper::checkValue($data->monday,"1") ?> type="checkbox" name="monday" id="monday" value="1">
                                       <label class="custom-control-label" for="monday">Monday</label>
                                     </div>
                                     <div class="custom-checkbox custom-control custom-control-inline">
-                                      <input class="custom-control-input" type="checkbox" name="tuesday" id="tuesday" value="1">
+                                      <input class="custom-control-input" <?php echo Helper::checkValue($data->tuesday,"1") ?> type="checkbox" name="tuesday" id="tuesday" value="1">
                                       <label class="custom-control-label" for="tuesday">Tuesday</label>
                                     </div>
                                     <div class="custom-checkbox custom-control custom-control-inline">
-                                      <input class="custom-control-input" type="checkbox" name="wednesday" id="wednesday" value="1">
+                                      <input class="custom-control-input" <?php echo Helper::checkValue($data->wednesday,"1") ?> type="checkbox" name="wednesday" id="wednesday" value="1">
                                       <label class="custom-control-label" for="wednesday">Wednesday</label>
                                     </div>
                                     <div class="custom-checkbox custom-control custom-control-inline">
-                                      <input class="custom-control-input" type="checkbox" name="thursday" id="thursday" value="1">
+                                      <input class="custom-control-input" <?php echo Helper::checkValue($data->thursday,"1") ?> type="checkbox" name="thursday" id="thursday" value="1">
                                       <label class="custom-control-label" for="thursday">Thursday</label>
                                     </div>
                                     <div class="custom-checkbox custom-control custom-control-inline">
-                                      <input class="custom-control-input" type="checkbox" name="fridy" id="Friday" value="1">
+                                      <input class="custom-control-input" <?php echo Helper::checkValue($data->friday,"1") ?> type="checkbox" name="friday" id="Friday" value="1">
                                       <label class="custom-control-label" for="Friday">Friday</label>
                                     </div>
                                     <div class="custom-checkbox custom-control custom-control-inline">
-                                      <input class="custom-control-input" type="checkbox" name="saturday" id="Saturday" value="1">
+                                      <input class="custom-control-input" <?php echo Helper::checkValue($data->saturday,"1") ?> type="checkbox" name="saturday" id="Saturday" value="1">
                                       <label class="custom-control-label" for="Saturday">Saturday</label>
                                     </div>
                                     <div class="custom-checkbox custom-control custom-control-inline">
-                                      <input class="custom-control-input" type="checkbox" name="sunday" id="Sunday" value="1">
+                                      <input class="custom-control-input" <?php echo Helper::checkValue($data->sunday,"1") ?> type="checkbox" name="sunday" id="Sunday" value="1">
                                       <label class="custom-control-label" for="Sunday">Sunday</label>
                                     </div>
 
@@ -315,14 +320,14 @@ require_once "template/header.php";
          
                                     <label for="">Facebook ID</label>
     
-                                    <input type="text" name="facebook-id" class="form-control" value="<?php echo Helper::old("facebook-id") ?>">
+                                    <input type="text" value="<?php echo  $data->facebook_id ?>" name="facebook-id" class="form-control" >
      
                                   </div>
                                   <div class="col-6">
            
                                     <label for="">Website URL</label>
         
-                                    <input type="text" name="website-url" value="<?php echo Helper::old("website-url") ?>" class="form-control">
+                                    <input type="text" name="website-url" value="<?php echo  $data->facebook_id ?>" class="form-control">
        
                                   </div>
                                  
@@ -333,7 +338,7 @@ require_once "template/header.php";
                              <div class="col-12 col-lg-6 mb-3">
                                  <div class="form-group">
                                      <label for="signature">Signature Foods</label>
-                                     <textarea name="signature" id="signature" class="form-control w-75" cols="30" rows="4"><?php echo Helper::old("signature") ?></textarea>
+                                     <textarea name="signature" id="signature" class="form-control w-75" cols="30" rows="4"><?php echo  $data->signature_food ?></textarea>
                                  </div>
                              </div>
                              <!-- Location start -->

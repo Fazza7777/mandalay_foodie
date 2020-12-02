@@ -48,7 +48,19 @@ class Restaurant{
           $cuisine_type = $request["cuisine_type"];
           $meal_type = $request["meal_type"];
           $eatery_type = $request["eatery_type"];
-          $restaurant_image = $_FILES["shop"]["name"];
+          //shop image
+          $res_imgName = uniqid()."_".$_FILES["shop"]["name"];
+          $res_imgTmp = $_FILES["shop"]["tmp_name"];
+          move_uploaded_file($res_imgTmp,"upload/".$res_imgName);
+          //menu image
+          if(empty($_FILES["menu"]["name"])){
+            $menu_image = "default_menu.png";
+          }else{
+            $menu_image =uniqid()."_".$_FILES["menu"]["name"];
+            $menu_tmp = $_FILES["menu"]["tmp_name"];
+            move_uploaded_file($menu_tmp,"upload/".$menu_image);
+          } 
+          //address
           $m_address = $request["m_address"];
           $e_address = $request["e_address"];
           $phone_one = $request["phone_one"];
@@ -61,8 +73,7 @@ class Restaurant{
           $from = $request["from"];
           $to = $request["to"];
           //Features
-          if(empty($_FILES["menu"]["name"])) $menu_image = "default_menu.png";
-          else $menu_image = $_FILES["menu"]["name"];
+         
           if(isset($request["Halal"])) $halal = $request["Halal"];
           else $halal = 0;
           if(isset($request["Vegetrian"])) $vegetrian = $request["Vegetrian"];
@@ -81,7 +92,7 @@ class Restaurant{
           else $delivery = 0;
           if(isset($request["buffet"])) $buffet = $request["buffet"];
           else $buffet = 0;
-         // Menu
+         // Close Day
          if(isset($request["monday"])) $monday = $request["monday"];
          else $monday = 0;
          if(isset($request["tuesday"])) $tuesday = $request["tuesday"];
@@ -100,7 +111,7 @@ class Restaurant{
           $restaurant= DB::create("restaurants",[
             "name_myanmar" => $myanmar_name,
             "name_english" => $english_name,
-            "restaurant_image"=>$restaurant_image,
+            "restaurant_image"=>$res_imgName,
             "cuisine_type"=>$cuisine_type,
             "meal_type"=>$meal_type,
             "eatery_type"=>$eatery_type,
@@ -147,6 +158,7 @@ class Restaurant{
     public static function all(){
         return $restaurants = DB::table("restaurants")->orderBy("id","desc")->get();
      }
+
      public function search($request){
          
         if(empty($request["cuisine_type"])){

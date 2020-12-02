@@ -19,7 +19,16 @@ class Helper{
            echo "";
        }
    }
-
+   public static function shopTime($from,$to){
+        $now = date("H a") ;
+        $from = date("H", strtotime($from));
+        $to = date("H", strtotime($to));
+        if ($from<=$now && $to>=$now) {
+            return "open";
+        }else{
+            return "close";
+        }
+   }
   public static function checkValidateError($arr,$name){
       if(isset($arr[$name])){
           echo $arr[$name];
@@ -33,4 +42,15 @@ class Helper{
     }
    return array_unique($address);
   }
+  public static function selectValue($check,$value){
+
+        if($check == $value) return "selected";
+         else return "";
+  }
+  public static function checkValue($check,$value){
+
+    if($check == $value) return "checked";
+     else return "";
+}
+
 }
