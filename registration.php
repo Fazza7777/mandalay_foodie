@@ -126,8 +126,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                       <td><?php echo $u->name; ?></td>
                       <td><?php echo $u->email; ?></td>
                       <td class="d-flex justify-content-center text-nowrap">
+     
                         <button id="editAcc" accountName="<?php echo $u->name ?>" accountId="<?php echo $u->id ?>" class=" btn-sm btn btn-success mr-3"><i class="feather-edit mr-1"></i> Edit</button>
+                        
                         <button adminId="<?php echo User::auth() ?  User::auth()->id : 0; ?>" id="deleteAcc" accountName="<?php echo $u->name ?>" accountId="<?php echo $u->id ?>" class=" btn-sm btn btn-danger"><i class="feather-trash-2"></i> Delete</button>
+         
                       </td>
                     </tr> 
                      <?php } ?>

@@ -10,9 +10,9 @@ require_once "template/header.php";
     $res = $res->create($_POST);
 
   //  echo date("g:iA", strtotime($_POST["from"]));
-  // echo "<pre>";
-  // print_r($res);
-   //  print_r($_POST);
+  echo "<pre>";
+  print_r($res);
+    //print_r($_POST);
 
   }
 ?>
@@ -108,7 +108,7 @@ require_once "template/header.php";
                                        <label class="custom-control-label" for="radio2">Dinner</label>
                                     </div>
                                     <div class="custom-control custom-radio mx-lg-5 mx-0 custom-control-inline">
-                                       <input type="radio" id="radio3" name="meal_type" value="drink" class="custom-control-input">
+                                       <input type="radio" id="radio3" name="meal_type" value="drinks" class="custom-control-input">
                                        <label class="custom-control-label" for="radio3">Drinks & Desserts</label>
                                     </div>
                                     <div class="custom-control custom-radio mx-lg-5 mx-0 custom-control-inline">
@@ -126,7 +126,7 @@ require_once "template/header.php";
                                 <label for="">Eatery Type</label>
                                 <div class="form-group">
                                     <div class="custom-control custom-radio mr-lg-5 mx-0 custom-control-inline">
-                                        <input type="radio" id="e-radio1" name="eatery_type" value="bar" class="custom-control-input">
+                                        <input type="radio" id="e-radio1" name="eatery_type" value="barpub" class="custom-control-input">
                                         <label class="custom-control-label" for="e-radio1">Bar & Pub</label>
                                     </div>
                                     <div class="custom-control custom-radio mx-lg-5 mx-0 custom-control-inline">
@@ -134,7 +134,7 @@ require_once "template/header.php";
                                        <label class="custom-control-label" for="e-radio2">Cofe</label>
                                     </div>
                                     <div class="custom-control custom-radio mx-lg-5 mx-0 custom-control-inline">
-                                       <input type="radio" id="e-radio3" name="eatery_type" value="cousal-dining" class="custom-control-input">
+                                       <input type="radio" id="e-radio3" name="eatery_type" value="cousaldining" class="custom-control-input">
                                        <label class="custom-control-label" for="e-radio3">Cousal Dining</label>
                                     </div>
                                     <div class="custom-control custom-radio mx-lg-5 mx-0 custom-control-inline">
@@ -156,39 +156,39 @@ require_once "template/header.php";
                                <label for="features">Features</label>
                                 <div class="form-group">
                                     <div class="custom-checkbox custom-control custom-control-inline">
-                                      <input class="custom-control-input" type="checkbox" name="features[]" value="halal" id="c1" name="halal">
+                                      <input class="custom-control-input" type="checkbox" name="Halal" value="1" id="c1" name="halal">
                                       <label class="custom-control-label" for="c1">Halal</label>
                                     </div>
                                     <div class="custom-checkbox custom-control custom-control-inline">
-                                      <input class="custom-control-input" type="checkbox" name="features[]" value="vegetrian" id="c2" name="vegetrian">
+                                      <input class="custom-control-input" type="checkbox" name="Vegetrian" value="1" id="c2" name="vegetrian">
                                       <label class="custom-control-label" for="c2">Vegetrian</label>
                                     </div>
                                     <div class="custom-checkbox custom-control custom-control-inline">
-                                      <input class="custom-control-input" type="checkbox" name="features[]" value="air" id="c3" name="Air-conditioned">
+                                      <input class="custom-control-input" type="checkbox" name="air" value="1" id="c3" name="Air-conditioned">
                                       <label class="custom-control-label" for="c3">Air-conditioned</label>
                                     </div>
                                     <div class="custom-checkbox custom-control custom-control-inline">
-                                      <input class="custom-control-input" type="checkbox" name="features[]" value="Wi-Fi" id="c4" >
+                                      <input class="custom-control-input" type="checkbox" name="wifi" value="1" id="c4" >
                                       <label class="custom-control-label" for="c4">Wi-Fi</label>
                                     </div>
                                     <div class="custom-checkbox custom-control custom-control-inline">
-                                      <input class="custom-control-input" type="checkbox" name="features[]" value="Parking" id="c5" >
+                                      <input class="custom-control-input" type="checkbox" name="parking" value="1" id="c5" >
                                       <label class="custom-control-label" for="c5">Parking</label>
                                     </div>
                                     <div class="custom-checkbox custom-control custom-control-inline">
-                                      <input class="custom-control-input" type="checkbox" name="features[]" value="Accept Credit Card" id="c6" >
+                                      <input class="custom-control-input" type="checkbox" name="credit_card" value="1" id="c6" >
                                       <label class="custom-control-label" for="c6">Accept Credit Card</label>
                                     </div>
                                     <div class="custom-checkbox custom-control custom-control-inline">
-                                      <input class="custom-control-input" type="checkbox" name="features[]" value="Accept Foreign Currency" id="c7" >
+                                      <input class="custom-control-input" type="checkbox" name="foreign" value="1" id="c7" >
                                       <label class="custom-control-label" for="c7">Accept Foreign Currency</label>
                                     </div>
                                     <div class="custom-checkbox custom-control custom-control-inline">
-                                      <input class="custom-control-input" type="checkbox" name="features[]" value="Delivery" id="c8" >
+                                      <input class="custom-control-input" type="checkbox" name="delivery" value="1" id="c8" >
                                       <label class="custom-control-label" for="c8">Delivery</label>
                                     </div>
                                     <div class="custom-checkbox custom-control custom-control-inline">
-                                      <input class="custom-control-input" type="checkbox" name="features[]" value="Buffet"  id="c9" >
+                                      <input class="custom-control-input" type="checkbox" name="buffet" value="1"  id="c9" >
                                       <label class="custom-control-label" for="c9">Buffet</label>
                                     </div>
                                 </div>
@@ -276,31 +276,31 @@ require_once "template/header.php";
                                 <label for="features">Close Day</label>
                                 <div class="form-group">
                                     <div class="custom-checkbox custom-control custom-control-inline">
-                                      <input class="custom-control-input" type="checkbox" name="days[]" id="monday" value="Monday">
+                                      <input class="custom-control-input" type="checkbox" name="monday" id="monday" value="1">
                                       <label class="custom-control-label" for="monday">Monday</label>
                                     </div>
                                     <div class="custom-checkbox custom-control custom-control-inline">
-                                      <input class="custom-control-input" type="checkbox" name="days[]" id="tuesday" value="Tuesday">
+                                      <input class="custom-control-input" type="checkbox" name="tuesday" id="tuesday" value="1">
                                       <label class="custom-control-label" for="tuesday">Tuesday</label>
                                     </div>
                                     <div class="custom-checkbox custom-control custom-control-inline">
-                                      <input class="custom-control-input" type="checkbox" name="days[]" id="wednesday" value="Wednesday">
+                                      <input class="custom-control-input" type="checkbox" name="wednesday" id="wednesday" value="1">
                                       <label class="custom-control-label" for="wednesday">Wednesday</label>
                                     </div>
                                     <div class="custom-checkbox custom-control custom-control-inline">
-                                      <input class="custom-control-input" type="checkbox" name="days[]" id="thursday" value="Thursday">
+                                      <input class="custom-control-input" type="checkbox" name="thursday" id="thursday" value="1">
                                       <label class="custom-control-label" for="thursday">Thursday</label>
                                     </div>
                                     <div class="custom-checkbox custom-control custom-control-inline">
-                                      <input class="custom-control-input" type="checkbox" name="days[]" id="Friday" value="Friday">
+                                      <input class="custom-control-input" type="checkbox" name="fridy" id="Friday" value="1">
                                       <label class="custom-control-label" for="Friday">Friday</label>
                                     </div>
                                     <div class="custom-checkbox custom-control custom-control-inline">
-                                      <input class="custom-control-input" type="checkbox" name="days[]" id="Saturday" value="Saturday">
+                                      <input class="custom-control-input" type="checkbox" name="saturday" id="Saturday" value="1">
                                       <label class="custom-control-label" for="Saturday">Saturday</label>
                                     </div>
                                     <div class="custom-checkbox custom-control custom-control-inline">
-                                      <input class="custom-control-input" type="checkbox" name="days[]" id="Sunday" value="Sunday">
+                                      <input class="custom-control-input" type="checkbox" name="sunday" id="Sunday" value="1">
                                       <label class="custom-control-label" for="Sunday">Sunday</label>
                                     </div>
 

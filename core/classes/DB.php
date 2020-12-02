@@ -61,7 +61,7 @@ class DB{
         }else{
             self::$sql .= " or $col $operator '$val'";
         }
-        echo self::$sql;
+        //echo self::$sql;
         return $this;
     }
     public static function create($table,$data){

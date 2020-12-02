@@ -20,7 +20,17 @@ class Helper{
        }
    }
 
-   public static function clearError(){
-       $_SESSION["error"] = [];
-   }
+  public static function checkValidateError($arr,$name){
+      if(isset($arr[$name])){
+          echo $arr[$name];
+      }
+  }
+  public static function address(){
+    $address = [];
+    $ad = DB::table("restaurants")->get();
+    foreach($ad as $a){
+        $address[]=$a->address_myanmar;
+    }
+   return array_unique($address);
+  }
 }

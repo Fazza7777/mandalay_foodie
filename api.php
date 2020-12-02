@@ -33,7 +33,12 @@ if(isset($_POST["username"])){
         
    }
 }
+//del restaurant
+if(isset($_GET["res_del"])){
+    $id = $_GET["id"];
+    $res = DB::delete("restaurants",$id);
 
+}
 //common code
 function showTable(){
     $html = "";
