@@ -7,6 +7,8 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>   
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script src="<?php echo $url ?>js/app.js"></script>
+    <script src="<?php echo $url ?>js/change_pass.js"></script>
+
 <script>
   let currentPage = location.href;
   $(".menu-item-link").each(function(){

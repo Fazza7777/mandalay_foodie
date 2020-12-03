@@ -185,6 +185,81 @@
    color:white;
    background-color:rgb(250, 84, 54);
 }
+/* Restaurant Detail */
+.detail-logo{
+    width: 120px;
+    height: 120px !important;
+    border-radius:10%;
+    box-shadow: 5px 9px 5px 0px rgba(211,211,211,0.4);
+-webkit-box-shadow: 5px 9px 5px 0px rgba(211,211,211,0.4);
+-moz-box-shadow: 5px 9px 5px 0px rgba(211,211,211,0.4);
+}
+.heade_detail{
+    background-color: var(--bg-warning);
+    color:white;
+   height:55px;
+   line-height: 55px;
+   box-shadow: 5px 9px 5px 0px rgba(211,211,211,0.4);
+-webkit-box-shadow: 5px 9px 5px 0px rgba(211,211,211,0.4);
+-moz-box-shadow: 5px 9px 5px 0px rgba(211,211,211,0.4);
+}
+
+.heade_detail p{
+    display: inline-block;
+    font-size:20px;
+    margin-left: 30px;
+    font-weight: 300;
+    
+} 
+.shop_logo{
+    width: 100%;
+    height: 180px !important;
+    transition: 1s;
+}
+.shop_logo:hover{
+    width:95%;
+    
+}
+.name{
+   margin-top: 30px !important;
+   text-align: center ;
+   height: 45px;
+   line-height: 45px;
+   color: var(--bg-warning-hover);
+   font-weight: bold;
+   background-color: rgb(248, 248, 248);
+   transition: all 1s;
+
+}
+.sevenDay{
+    padding-left: 30px;
+}
+.name-big p{
+    text-align: center !important;
+}
+.features span{
+    font-size: 12px !important;
+    color:var(--bg-warning);
+}
+.features i{
+    color:var(--bg-warning);
+}
+.detail h5{
+    text-align: center;
+    font-size: 18px;
+}
+.name:hover,.name-big:hover{
+
+    margin-right:60px;
+}
+.location{
+    margin-left: 20px !important;
+    margin-bottom: 20px !important;
+}
+.menu-logo{
+    width:70%;
+    height: 100px;
+}
 @media screen and (max-width:780px){
     .sidebar{
         position: fixed;
@@ -206,5 +281,9 @@
     .insert_head{
         font-size: 21px !important;
     }
-
+   .current-time{
+       font-size: 12px !important;
+       margin-left: 0;
+       margin-right: 0;
+   }
 }

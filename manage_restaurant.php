@@ -6,7 +6,7 @@ if(!isset($_SESSION["user_id"])){
 }
 if(isset($_GET["search"]) ){
     $search = new Restaurant();
-    $search = $search->search($_GET);
+    $search = $search->searchForManage($_GET);
     
 }else{
     $search = Restaurant::restaurants();

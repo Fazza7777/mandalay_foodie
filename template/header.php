@@ -46,7 +46,7 @@ require_once "core/autoload.php";
                         <div class="dropdown-menu dropdown-menu-right bg-warning dropdown-area">
                             <a href="<?php echo $url ?>logout.php?id=<?php echo User::auth()->id?>" class="dropdown-item text-white" type="button">Logout</a>
                             <div class="dropdown-divider bg-white"></div>
-                            <a class="dropdown-item text-white" type="button">Change Password</a>
+                            <a id="pass_change" class="dropdown-item text-white" type="button">Change Password</a>
                         </div>
                     </div>
 
@@ -57,3 +57,43 @@ require_once "core/autoload.php";
           </div>
       </div>
         <!-- header end -->
+
+<!-- Pass Change Model Modal start -->
+<div class="modal fade" id="passchange" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="mTitle">Change Password</h5>
+        
+      </div>
+      <div class="modal-body">
+     
+         <form  id="my-form" oldPass="<?php echo User::auth()->password?>" curId="<?php echo User::auth()->id ?>" curName="<?php echo User::auth()->name ?>">
+            <div class="form-group">
+              <label for="oldPassword">Old Password</label>
+              <input type="password" class="form-control" id="oldPassword">
+              <small id="oPass" class="text-danger"></small>
+            </div>
+            <div class="form-group">
+              <label for="newPassword">New Password</label>
+              <input type="password" class="form-control" id="newPassword">
+              <small class="text-danger " id="nPass"></small>
+            </div>
+            <div class="form-group">
+              <label for="cnewPassword">Comfirm New Password</label>
+              <input type="password" class="form-control" id="cnewPassword">
+              <small class="text-danger " id="cnPass"></small>
+            </div>
+         </form>
+      </div>
+      <div class="modal-footer d-flex justify-content-end">
+  
+        <p>
+           <button type="button" class="btn btn-outline-secondary mr-2" data-dismiss="modal">cancel</button>
+            <button type="submit" form="my-form" class="btn btn-danger">Change</button>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Pass Change  Maodal end -->

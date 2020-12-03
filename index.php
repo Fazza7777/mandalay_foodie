@@ -10,7 +10,7 @@ require_once "template/header.php";
     $search = new Restaurant();
     $search = $search->search($_GET);  
 }else{
-    $search = Restaurant::restaurants();
+    $search = Restaurant::all();
 }
 ?>
     <!-- content area start -->
@@ -135,7 +135,7 @@ require_once "template/header.php";
                     <tbody>
                         <?php 
                         $no = 1;
-                        foreach($search['data'] as $r){
+                        foreach($search as $r){
                         ?>
                         <tr>
                             <td><?php echo $no++ ?></td>
@@ -144,7 +144,7 @@ require_once "template/header.php";
                             <td><?php echo $r->phone_one ?></td>
                             <td><?php echo $r->address_myanmar ?></td>
                             <td><?php echo date("j-M-Y",strtotime($r->created_at)) ?></td>
-                            <td><button class="btn btn-warning">Detail</button></td>
+                            <td><a href="<?php echo $url ?>/restaurant_detail.php?id=<?php echo $r->id ?>" class="btn btn-warning">Detail</button></td>
                         </tr>
                         <?php } ?>
                     </tbody>

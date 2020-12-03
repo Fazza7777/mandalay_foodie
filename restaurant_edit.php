@@ -9,15 +9,15 @@ require_once "template/header.php";
     $data = DB::table("restaurants")->where("id",$_GET['id'])->first();
     // echo $data->name_myanmar;
   }
-  if($_SERVER["REQUEST_METHOD"] == "POST"){
-    $res = new Restaurant();
-    $res = $res->create($_POST);
-
-  //  echo date("g:iA", strtotime($_POST["from"]));
-  // echo "<pre>";
-  // print_r($res);
-    //print_r($_POST);
-
+  if ($_SERVER["REQUEST_METHOD"] == "POST") {
+      $res = new Restaurant();
+      $res = $res->update($_POST);
+      if($res == "success"){
+        Helper::redirect("index.php");
+      }
+      //  echo date("g:iA", strtotime($_POST["from"]));
+    //  echo "<pre>";
+      // print_r($res);
   }
 
 ?>
@@ -35,6 +35,7 @@ require_once "template/header.php";
                     <div class="col-12">
                     <form method="POST" enctype="multipart/form-data">
                        <div class="form-row">
+                       <input type="hidden" name="id" value="<?php echo $data->id ?>">
                            <!-- Name start -->
                            <div class="col-12 mb-2 col-lg-6">
                                <div class="form-group">
@@ -61,6 +62,8 @@ require_once "template/header.php";
                               <div class="form-group ">
                                 <label for="image">Choose Image</label>
                                 <input type="file" name="shop" class="form-control-file" id="image">
+                                <img src="upload/<?php echo $data->restaurant_image ?>" class="manage_img mt-2" alt="restaurant image">
+                    
                                 <?php if(isset($res["shop-img"])){ ?>
                                        <small class="text-danger"><?php echo $res["shop-img"] ?></small>
                                 <?php } ?>
@@ -227,6 +230,7 @@ require_once "template/header.php";
                               <div class="form-group ">
                                 <label for="image"> Menu</label>
                                 <input type="file" name="menu" class="form-control-file" id="image">
+                                <img src="upload/<?php echo $data->menu ?>" class="manage_img mt-2" alt="menu image">
                              </div>
                             </div>
                              <!-- Menu  End -->

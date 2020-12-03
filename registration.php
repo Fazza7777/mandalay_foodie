@@ -111,7 +111,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                       <th scope="col">No</th>
                       <th scope="col">Name</th>
                       <th scope="col">Email</th>
-                      <th scope="col">Action</th>
+                       <?php if(User::auth()->id ==1){ ?>
+                      <th scope="col">Delete</th>
+                      <?php }else{?>
+                      <th scope="col">Create Date</th>
+                      <?php } ?>
                     </tr>
                   </thead>
                   <tbody id="action">
@@ -125,13 +129,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                       <th scope="row"><?php echo $no++; ?></th>
                       <td><?php echo $u->name; ?></td>
                       <td><?php echo $u->email; ?></td>
+                     
                       <td class="d-flex justify-content-center text-nowrap">
-     
-                        <button id="editAcc" accountName="<?php echo $u->name ?>" accountId="<?php echo $u->id ?>" class=" btn-sm btn btn-success mr-3"><i class="feather-edit mr-1"></i> Edit</button>
-                        
+                      <?php if(User::auth()->id ==1 && $u->id != User::auth()->id){ ?>
                         <button adminId="<?php echo User::auth() ?  User::auth()->id : 0; ?>" id="deleteAcc" accountName="<?php echo $u->name ?>" accountId="<?php echo $u->id ?>" class=" btn-sm btn btn-danger"><i class="feather-trash-2"></i> Delete</button>
-         
-                      </td>
+                      <?php }else if(User::auth()->id !=1 ){ ?>
+                        <?php echo date("j / M / Y",strtotime($u->create_at)); ?>
+                      <?php }else{ ?>
+                        
+                      <?php } ?>
+                      </td> 
                     </tr> 
                      <?php } ?>
                   </tbody>
@@ -142,40 +149,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </div>
   </div>
 <!-- content area end -->
-<!-- Edit Modal start -->
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="mTitle">Update Account</h5>
-        
-      </div>
-      <div class="modal-body">
-        
-         <form  id="my-form" curId="<?php echo User::auth()->id ?>" curName="<?php echo User::auth()->name ?>">
-            <div class="form-group">
-              <label for="editName">Username</label>
-              <input type="hidden" class="form-control" id="id">
-              <input type="text" class="form-control" id="editName">
-              <small id="nullName" class="text-danger"></small>
-            </div>
-            <div class="form-group">
-              <label for="editEmail">Email</label>
-              <input type="email" class="form-control" id="editEmail">
-              <small class="text-danger " id="nullEmail"></small>
-            </div>
-         </form>
-      </div>
-      <div class="modal-footer d-flex justify-content-end">
-  
-        <p>
-           <button type="button" class="btn btn-outline-secondary mr-2" data-dismiss="modal">cancel</button>
-            <button type="submit" form="my-form" class="btn btn-success">Update</button>
-        </p>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Edit Maodal end -->
+
 <?php require_once "template/footer.php" ?>  
 <script src="<?php echo $url ?>js/register.js"></script>
+<script>
